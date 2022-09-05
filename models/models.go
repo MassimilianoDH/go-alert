@@ -68,3 +68,12 @@ type Alert struct {
 	} `json:"incident"`
 	Version string `json:"version"`
 }
+
+type Message struct {
+	ProjectID    string
+	ResourceType string
+	PolicyName   string
+	ThreatLevel  string
+	Summary      string
+	URL          string
+}

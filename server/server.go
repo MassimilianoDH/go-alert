@@ -1,15 +1,20 @@
 package server
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/json"
+	"fmt"
 	"go-alert/bot"
 	"go-alert/config"
 	"go-alert/models"
 	"log"
 	"net/http"
+	"text/template"
 	"time"
+
+	"gopkg.in/telebot.v3"
 )
 
 var alert models.Alert
@@ -69,19 +74,33 @@ func (app *application) webhook(w http.ResponseWriter, r *http.Request) {
 		return
 	} else {
 
-		//
-		//
-		//
-		id := "IncidentID:" + " " + alert.Incident.IncidentID + "\n" // FIX!
-		sum := "Summary:" + " " + alert.Incident.Summary + "\n"
-		url := "URL:" + " " + alert.Incident.URL + "\n"
-		msg := id + sum + url
-		//
-		//
-		//
+		// WIP
+		data := models.Message{
+			ProjectID:    alert.Incident.ScopingProjectID,
+			ResourceType: alert.Incident.ResourceTypeDisplayName,
+			PolicyName:   alert.Incident.PolicyName,
+			ThreatLevel:  alert.Incident.PolicyUserLabels.UserLabel1,
+			Summary:      alert.Incident.Summary,
+			URL:          alert.Incident.URL,
+		}
+
+		t, err := template.ParseFiles("templates/message.txt")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		var b bytes.Buffer
+
+		err = t.Execute(&b, &data)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Println(b.String())
+		// WIP
 
 		log.Println("Server: Message sent to Telegram group: ", bot.ExpChat)
-		bot.ExpBot.Send(bot.ExpChat, msg)
+		bot.ExpBot.Send(bot.ExpChat, b.String(), telebot.ModeHTML)
 		w.WriteHeader(200)
 		return
 	}

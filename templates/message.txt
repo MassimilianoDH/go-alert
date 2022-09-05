@@ -1,0 +1,6 @@
+<b>Project ID: </b>{{.ProjectID}}
+<b>Resource Type: </b>{{.ResourceType}}
+<b>Policy Name: </b>{{.PolicyName}}
+<b>Threat Level: </b>{{.ThreatLevel}}
+<b>Summary: </b>{{.Summary}}
+<a href={{.URL}}>GotoIncident</a>
