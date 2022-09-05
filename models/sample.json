@@ -1,0 +1,67 @@
+{
+    "incident": {
+      "incident_id": "",
+      "scoping_project_id": "",
+      "scoping_project_number": 0,
+      "url": "",
+      "started_at": 0,
+      "ended_at": 0,
+      "state": "",
+      "resource_id": "",
+      "resource_name": "",
+      "resource_display_name": "",
+      "resource_type_display_name": "",
+      "resource": {
+        "type": "",
+        "labels": {
+          "instance_id": "",
+          "project_id": "",
+          "zone": ""
+        }
+      },
+      "metric": {
+        "type": "",
+        "displayName": "",
+        "labels": {
+          "instance_name": ""
+        }
+      },
+      "metadata": {
+        "system_labels": { "labelkey": "" },
+        "user_labels": { "labelkey": "" }
+      },
+      "policy_name": "",
+      "policy_user_labels" : {
+          "user-label-1" : "",
+          "user-label-2" : ""
+      },
+      "condition_name": "",
+      "threshold_value": "",
+      "observed_value": "",
+      "condition": {
+        "name": "",
+        "displayName": "",
+        "conditionThreshold": {
+          "filter": "",
+          "aggregations": [
+            {
+              "alignmentPeriod": "",
+              "perSeriesAligner": ""
+            }
+          ],
+          "comparison": "",
+          "thresholdValue": 0,
+          "duration": "",
+          "trigger": {
+            "count": 0
+          }
+        }
+      },
+      "documentation": {
+        "content": "",
+        "mime_type": ""
+      },
+      "summary": ""
+    },
+    "version": "1.2"
+  }
