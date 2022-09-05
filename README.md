@@ -40,7 +40,7 @@
 
 
 ## 🚀 Set-Up <a name = "setup"></a>
-### Secrets (required/optional) <a name = "secrets"></a>
+### Env Vars (required/optional) <a name = "secrets"></a>
 #### Common (required)
 
 
