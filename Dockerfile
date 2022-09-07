@@ -10,8 +10,8 @@ ENV GODEBUG netdns=cgo
 RUN apk add --no-cache --update alpine-sdk \
     git \
     gcc \
-&&  git clone https://github.com/MassimilianoDH/telebot-alert \
-&&  cd telebot-alert \
+&&  git clone https://github.com/MassimilianoDH/go-alert \
+&&  cd go-alert \
 &&  go build
 
 # Start a new, final image.
@@ -26,6 +26,6 @@ RUN apk --no-cache add \
     ca-certificates
 
 # Copy the binaries from the builder image.
-COPY --from=builder builder/telebot-alert/go-alert /bin/
+COPY --from=builder builder/go-alert/go-alert /bin/
 
 CMD [ "go-alert" ]

@@ -5,7 +5,7 @@
 ## Submitting changes
 
 - Fork the repo
-  - <https://github.com/MassimilianoDH/terraform-push/fork>
+  - <https://github.com/MassimilianoDH/go-alert/fork>
 - Check out a new branch based and name it to what you intend to do:
   - Example:
     ````
