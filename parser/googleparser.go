@@ -33,7 +33,7 @@ func GoogleParseAndSend(c *gin.Context) {
 		ThreatLevel:  googleAlert.Incident.PolicyUserLabels.UserLabel1,
 	}
 
-	t, err := template.ParseFiles("templates/googletemplateshort.txt")
+	t, err := template.ParseFiles("templates/googletemplate.txt")
 	if err != nil {
 		log.Println(err)
 	}

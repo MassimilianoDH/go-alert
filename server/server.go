@@ -23,7 +23,6 @@ func StartServer() {
 	// Set handles
 	authorized.POST("/googlecloud", parser.GoogleParseAndSend)
 	authorized.POST("/azurecloud", parser.AzureParseAndSend)
-	// NOT WORKING PROPERLY
 	authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
 
 	// listen and serve on 0.0.0.0:config.Port

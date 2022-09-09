@@ -46,8 +46,8 @@ func StartBot() {
 	// Send message to confirm bot start
 	err = notify.Send(
 		context.Background(),
-		"🤖  *Bot Start*  🤖",
-		"Bot has started successfully! ✅",
+		"🤖🤖🤖  *Bot Start*  🤖🤖🤖",
+		"Bot started successfully! ✅",
 	)
 	if err != nil {
 		log.Fatal(err)
