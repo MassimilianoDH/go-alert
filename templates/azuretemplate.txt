@@ -1,0 +1,5 @@
+☁️*Cloud Provider:* Azure Cloud
+🪪*AlertID:* '{{.AlertID}}'
+🖥️*SignalType:* '{{.SignalType}}'
+📃*AlertRule:* '{{.AlertRule}}'
+📈*Threat Level:* '{{.ThreatLevel}}'

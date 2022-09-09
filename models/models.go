@@ -1,9 +1,11 @@
 package models
 
+import "time"
+
 // Google Cloud Monitoring Alert
 // https://cloud.google.com/monitoring/support/notification-options#webhooks
 
-type Alert struct {
+type GoogleAlert struct {
 	Incident struct {
 		IncidentID              string `json:"incident_id"`
 		ScopingProjectID        string `json:"scoping_project_id"`
@@ -69,11 +71,131 @@ type Alert struct {
 	Version string `json:"version"`
 }
 
-type Message struct {
+type GoogleMessage struct {
 	ProjectID    string
 	ResourceType string
+	ResourceName string
 	PolicyName   string
 	ThreatLevel  string
 	Summary      string
 	URL          string
+}
+
+type GoogleMessageShort struct {
+	ProjectID    string
+	ResourceType string
+	PolicyName   string
+	ThreatLevel  string
+}
+
+// Azure Cloud Monitoring Alert
+// https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-log-webhook
+
+type AzureAlert struct {
+	SchemaID string `json:"schemaId"`
+	Data     struct {
+		Essentials struct {
+			AlertID             string    `json:"alertId"`
+			AlertRule           string    `json:"alertRule"`
+			Severity            string    `json:"severity"`
+			SignalType          string    `json:"signalType"`
+			MonitorCondition    string    `json:"monitorCondition"`
+			MonitoringService   string    `json:"monitoringService"`
+			AlertTargetIDs      []string  `json:"alertTargetIDs"`
+			OriginAlertID       string    `json:"originAlertId"`
+			FiredDateTime       time.Time `json:"firedDateTime"`
+			Description         string    `json:"description"`
+			EssentialsVersion   string    `json:"essentialsVersion"`
+			AlertContextVersion string    `json:"alertContextVersion"`
+		} `json:"essentials"`
+		AlertContext struct {
+			Properties struct {
+				Name1 string `json:"name1"`
+				Name2 string `json:"name2"`
+			} `json:"properties"`
+			ConditionType string `json:"conditionType"`
+			Condition     struct {
+				WindowSize string `json:"windowSize"`
+				AllOf      []struct {
+					SearchQuery         string `json:"searchQuery"`
+					MetricMeasureColumn string `json:"metricMeasureColumn"`
+					TargetResourceTypes string `json:"targetResourceTypes"`
+					Operator            string `json:"operator"`
+					Threshold           string `json:"threshold"`
+					TimeAggregation     string `json:"timeAggregation"`
+					Dimensions          []struct {
+						Name  string `json:"name"`
+						Value string `json:"value"`
+					} `json:"dimensions"`
+					MetricValue    float64 `json:"metricValue"`
+					FailingPeriods struct {
+						NumberOfEvaluationPeriods int `json:"numberOfEvaluationPeriods"`
+						MinFailingPeriodsToAlert  int `json:"minFailingPeriodsToAlert"`
+					} `json:"failingPeriods"`
+					LinkToSearchResultsUI          string `json:"linkToSearchResultsUI"`
+					LinkToFilteredSearchResultsUI  string `json:"linkToFilteredSearchResultsUI"`
+					LinkToSearchResultsAPI         string `json:"linkToSearchResultsAPI"`
+					LinkToFilteredSearchResultsAPI string `json:"linkToFilteredSearchResultsAPI"`
+				} `json:"allOf"`
+				WindowStartTime time.Time `json:"windowStartTime"`
+				WindowEndTime   time.Time `json:"windowEndTime"`
+			} `json:"condition"`
+		} `json:"alertContext"`
+	} `json:"data"`
+}
+
+type AzureMessage struct {
+	AlertID     string
+	SignalType  string
+	AlertRule   string
+	ThreatLevel string
+}
+
+// Amazon Web Services SNS Alert
+// https://docs.aws.amazon.com/sns/latest/dg/sns-message-and-json-formats.html
+
+type AmazonSubscriptionConfirmation struct {
+	Type             string    `json:"Type"`
+	MessageID        string    `json:"MessageId"`
+	Token            string    `json:"Token"`
+	TopicArn         string    `json:"TopicArn"`
+	Message          string    `json:"Message"`
+	SubscribeURL     string    `json:"SubscribeURL"`
+	Timestamp        time.Time `json:"Timestamp"`
+	SignatureVersion string    `json:"SignatureVersion"`
+	Signature        string    `json:"Signature"`
+	SigningCertURL   string    `json:"SigningCertURL"`
+}
+
+type AmazonAlert struct {
+	Type             string    `json:"Type"`
+	MessageID        string    `json:"MessageId"`
+	TopicArn         string    `json:"TopicArn"`
+	Subject          string    `json:"Subject"`
+	Message          string    `json:"Message"`
+	Timestamp        time.Time `json:"Timestamp"`
+	SignatureVersion string    `json:"SignatureVersion"`
+	Signature        string    `json:"Signature"`
+	SigningCertURL   string    `json:"SigningCertURL"`
+	UnsubscribeURL   string    `json:"UnsubscribeURL"`
+}
+
+type AmazonUnsubscribeConfirmation struct {
+	Type             string    `json:"Type"`
+	MessageID        string    `json:"MessageId"`
+	Token            string    `json:"Token"`
+	TopicArn         string    `json:"TopicArn"`
+	Message          string    `json:"Message"`
+	SubscribeURL     string    `json:"SubscribeURL"`
+	Timestamp        time.Time `json:"Timestamp"`
+	SignatureVersion string    `json:"SignatureVersion"`
+	Signature        string    `json:"Signature"`
+	SigningCertURL   string    `json:"SigningCertURL"`
+}
+
+type AmazonMessage struct {
+	Topic     string
+	Subject   string
+	Message   string
+	MessageID string
 }

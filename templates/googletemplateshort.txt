@@ -1,0 +1,5 @@
+☁️*Cloud Provider:* Google Cloud
+🪪*Project ID:* '{{.ProjectID}}'
+🖥️*Resource Type:* '{{.ResourceType}}'
+📃*Policy Name:* '{{.PolicyName}}'
+📈*Threat Level:* '{{.ThreatLevel}}'

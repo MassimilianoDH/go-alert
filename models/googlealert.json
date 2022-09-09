@@ -42,7 +42,7 @@
       "name": "projects/internal-project/alertPolicies/1234567890123456789/conditions/1234567890123456789",
       "displayName": "VM Instance - CPU utilization [MAX]",
       "conditionThreshold": {
-        "filter": "metric.type=\\",
+        "filter": "metric.type=\\'compute.googleapis.com/instance/cpu/utilization\\' resource.type=\\'gce_instance\\' metadata.system_labels.\\'state\\'=\\'ACTIVE\\'",
         "aggregations": [
           {
             "alignmentPeriod": "120s",
@@ -56,6 +56,10 @@
           "count": 1
         }
       }
+    },
+    "documentation": {
+      "content": "TEST ALERT\n\npolicy.name=projects/internal-project/alertPolicies/1234567890123456789\n\npolicy.display_name=Monitored-Project-NO-GROUPBY\n\ncondition.name=projects/nternal-project/alertPolicies/1234567890123456789/conditions/1234567890123456789\n\ncondition.display_name=VM Instance - CPU utilization [MAX]\n\nproject=internal-project\n\nresrouce.project=internal-project \n\nDONE\n",
+      "mime_type": "text/markdown"
     },
     "summary": "CPU utilization for internal-project gke-cluster-1-16-default-pool-e2df4cbd-dgp3 with metric labels {instance_name=gke-cluster-1-default-pool-e2df4cbd-dgp3} and system labels {state=ACTIVE} returned to normal with a value of 0.835."
   },

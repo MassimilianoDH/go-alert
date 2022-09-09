@@ -14,6 +14,9 @@ import (
 var ExpBot *notify.Notify
 
 func StartBot() {
+
+	var err error
+
 	// Create a notify instance
 	notify := notify.New()
 
@@ -24,8 +27,8 @@ func StartBot() {
 
 	// Create a Telegram service
 	telegramService, err := telegram.New(config.TelegramBotToken)
+	telegramService.SetParseMode(telegram.ModeMarkdown)
 	telegramService.AddReceivers(config.TelegramChatID)
-
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,10 +46,9 @@ func StartBot() {
 	// Send message to confirm bot start
 	err = notify.Send(
 		context.Background(),
-		"TOPIC: Bot Start",
-		"I am a bot written in Go!",
+		"🤖  *Bot Start*  🤖",
+		"Bot has started successfully! ✅",
 	)
-
 	if err != nil {
 		log.Fatal(err)
 	}
