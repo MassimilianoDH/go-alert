@@ -71,7 +71,7 @@ type GoogleAlert struct {
 	Version string `json:"version"`
 }
 
-type GoogleMessage struct {
+type GoogleMessageLong struct {
 	ProjectID    string
 	ResourceType string
 	ResourceName string
@@ -81,7 +81,7 @@ type GoogleMessage struct {
 	URL          string
 }
 
-type GoogleMessageShort struct {
+type GoogleMessage struct {
 	ProjectID    string
 	ResourceType string
 	PolicyName   string

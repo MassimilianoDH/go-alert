@@ -16,7 +16,7 @@
 ---
 
 <p align="center"> 
-    <br> 
+    <br> Simple yet scalable Go bot to broadcast monitoring alerts from multiple cloud providers to multiple chat services.
 </p>
 
 ## 📝 Table of Contents
@@ -30,25 +30,34 @@
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
-
-
+Simple yet scalable Go bot to broadcast monitoring alerts from multiple cloud providers to multiple chat services.
 
 ### Features <a name = "features"></a>
-
+- Supported Cloud Providers:
+  - Google Cloud
+  - Amazon Web Services
+  - Azure Cloud
+- Supported Chat Services:
+  - Discord
+  - MS Teams
+  - Slack
+  - Telegram
+  - More
 
 ## 🏁 Pre-Requisites <a name = "prerequisites"></a>
-
+- Basic understanding of Go
+- Basic knowledge of Cloud Provider Notifications
 
 ## 🚀 Set-Up <a name = "setup"></a>
-### Env Vars (required/optional) <a name = "secrets"></a>
-#### Common (required)
 
+### Env Vars (required) <a name = "secrets"></a>
 
 ## 🎈 Usage <a name="usage"></a>
 
-
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [GO](https://go.dev/) - Base
+- [Gin](https://github.com/gin-gonic/gin) - Framework
+- [notify](https://github.com/nikoksr/notify) - Chat Service Integration
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@MassimilianoDH](https://github.com/MassimilianoDH) - Idea & Initial Work

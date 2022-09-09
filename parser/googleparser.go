@@ -26,7 +26,7 @@ func GoogleParseAndSend(c *gin.Context) {
 
 	log.Println("Server: Incoming Alert from: ", googleAlert.Incident.ScopingProjectID)
 
-	data := models.GoogleMessageShort{
+	data := models.GoogleMessage{
 		ProjectID:    googleAlert.Incident.ScopingProjectID,
 		ResourceType: googleAlert.Incident.ResourceTypeDisplayName,
 		PolicyName:   googleAlert.Incident.PolicyName,

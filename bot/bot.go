@@ -7,6 +7,8 @@ import (
 
 	"github.com/nikoksr/notify"
 	"github.com/nikoksr/notify/service/discord"
+	"github.com/nikoksr/notify/service/msteams"
+	"github.com/nikoksr/notify/service/slack"
 	"github.com/nikoksr/notify/service/telegram"
 )
 
@@ -21,24 +23,45 @@ func StartBot() {
 	notify := notify.New()
 
 	// Create a Discord service
-	discordService := discord.New()
-	discordService.AuthenticateWithBotToken(config.DiscordBotToken)
-	discordService.AddReceivers(config.DiscordChatID)
-
-	// Create a Telegram service
-	telegramService, err := telegram.New(config.TelegramBotToken)
-	telegramService.SetParseMode(telegram.ModeMarkdown)
-	telegramService.AddReceivers(config.TelegramChatID)
-	if err != nil {
-		log.Fatal(err)
+	if config.DiscordBotToken != "" && config.DiscordChatID != "" {
+		discordService := discord.New()
+		discordService.AuthenticateWithBotToken(config.DiscordBotToken)
+		discordService.AddReceivers(config.DiscordChatID)
+		notify.UseServices(discordService)
+	} else {
+		log.Println("Both Bot Token AND Chat ID are needed")
 	}
 
-	// // Create a Slack service
-	// slackService := slack.New("OAUTH_TOKEN")
-	// slackService.AddReceivers("CHANNEL_ID")
+	// Create a Microsoft Teams service
+	if config.TeamsWebhook != "" {
+		msTeamsService := msteams.New()
+		msTeamsService.AddReceivers(config.TeamsWebhook)
+		notify.UseServices(msTeamsService)
+	} else {
+		log.Println("Both Bot Token AND Chat ID are needed")
+	}
 
-	// Tell our notifier to use the multiple services.
-	notify.UseServices(discordService, telegramService)
+	// Create a Slack service
+	if config.SlackBotToken != "" && config.SlackChatID != "" {
+		slackService := slack.New(config.SlackBotToken)
+		slackService.AddReceivers(config.SlackChatID)
+		notify.UseServices(slackService)
+	} else {
+		log.Println("Both Bot Token AND Chat ID are needed")
+	}
+
+	// Create a Telegram service
+	if config.TelegramBotToken != "" && config.TelegramChatID != 0 {
+		telegramService, err := telegram.New(config.TelegramBotToken)
+		telegramService.SetParseMode(telegram.ModeMarkdown)
+		telegramService.AddReceivers(config.TelegramChatID)
+		if err != nil {
+			log.Fatal(err)
+		}
+		notify.UseServices(telegramService)
+	} else {
+		log.Println("Both Bot Token AND Chat ID are needed")
+	}
 
 	// ExpBot will expose bot to server.go
 	ExpBot = notify

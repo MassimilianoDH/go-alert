@@ -21,9 +21,17 @@ func StartServer() {
 	}))
 
 	// Set handles
-	authorized.POST("/googlecloud", parser.GoogleParseAndSend)
-	authorized.POST("/azurecloud", parser.AzureParseAndSend)
-	authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
+	if config.GCPEnabled {
+		authorized.POST("/gcp", parser.GoogleParseAndSend)
+	}
+
+	if config.AZREnabled {
+		authorized.POST("/azr", parser.AzureParseAndSend)
+	}
+
+	if config.AWSEnabled {
+		authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
+	}
 
 	// listen and serve on 0.0.0.0:config.Port
 	err = r.Run(config.Port)
