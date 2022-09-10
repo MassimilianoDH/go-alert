@@ -54,9 +54,9 @@ A simple yet scalable GO bot to broadcast monitoring alerts from multiple Cloud 
 
 ### Build (required) <a name = "build"></a>
 
-git clone go-alert
-cd go-alert
-go build main.go
+- git clone go-alert
+- cd go-alert
+- go build main.go
 
 ### Env Vars (required) <a name = "envvars"></a>
 
@@ -64,26 +64,26 @@ Only add the Env Vars required for your preferred Cloud Provider(s) and Chat Ser
 
 #### Webhooks (required/optional)
 
-export SERVER_PORT=8080
-export AUTH_USERNAME=username
-export AUTH_PASSWORD=password
+- export SERVER_PORT=8080
+- export AUTH_USERNAME=username
+- export AUTH_PASSWORD=password
 
-export GCP_TEMPLATE=templates/googletemplate.txt
-export AZR_TEMPLATE=templates/azuretemplate.txt
-export AWS_TEMPLATE=templates/amazontemplate.txt
+- export GCP_TEMPLATE=templates/googletemplate.txt
+- export AZR_TEMPLATE=templates/azuretemplate.txt
+- export AWS_TEMPLATE=templates/amazontemplate.txt
 
 #### Chats (required/optional)
 
-export DISCORD_BOT_TOKEN=
-export DISCORD_CHAT_ID=
+- export DISCORD_BOT_TOKEN=
+- export DISCORD_CHAT_ID=
 
-export MSTEAMS_WEBHOOK=
+- export MSTEAMS_WEBHOOK=
 
-export SLACK_BOT_TOKEN=
-export SLACK_CHAT_ID=
+- export SLACK_BOT_TOKEN=
+- export SLACK_CHAT_ID=
 
-export TELEGRAM_BOT_TOKEN=
-export TELEGRAM_CHAT_ID=
+- export TELEGRAM_BOT_TOKEN=
+- export TELEGRAM_CHAT_ID=
 
 ## 🎈 Usage <a name="usage"></a>
 
