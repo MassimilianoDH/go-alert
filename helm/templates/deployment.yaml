@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "goalert.fullname" . }}
+  labels:
+    {{- include "goalert.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "goalert.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "goalert.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ include "goalert.name" . }}
+          image: {{ include "goalert.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
+          env:
+          {{- range $.Values.env }}
+            - name: {{ .name | quote }}
+              value: {{ .value | quote }}
+          {{- end }}                 
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+          {{- range $.Values.containerPorts }}
+            - containerPort: {{ .containerPort }}
+              protocol: {{ .protocol | quote }}
+              name: {{ .name | quote }}
+          {{- end }}
+        {{- if .Values.command.enabled }}
+          command: {{ .Values.command.cmd }}
+          args: 
+            {{- range .Values.command.args }}
+            - {{ . }}
+            {{- end }}
+        {{- end }}
+        {{- if .Values.probesEnabled }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

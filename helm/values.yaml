@@ -1,0 +1,109 @@
+# Default values for goalert.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  name: ""
+  tag: "latest"
+  pullPolicy: IfNotPresent  # Always
+
+service:
+  type: "ClusterIP"
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+
+containerPorts:
+  - containerPort: 8080
+    protocol: TCP
+    name: http
+
+env:
+  - name: SERVER_PORT
+    value: "8080"
+  - name: AUTH_USERNAME
+    value: "username"
+  - name: AUTH_PASSWORD
+    value: "password"
+
+  - name: GCP_TEMPLATE
+    value: "templates/googletemplate.txt"
+  - name: AZR_TEMPLATE
+    value: "templates/azuretemplate.txt"
+  - name: AWS_TEMPLATE
+    value: "templates/amazontemplate.txt"
+
+  - name: DISCORD_BOT_TOKEN
+    value: ""
+  - name: DISCORD_CHAT_ID
+    value: ""
+
+  - name: MSTEAMS_WEBHOOK
+    value: ""
+
+  - name: SLACK_BOT_TOKEN
+    value: ""
+  - name: SLACK_CHAT_ID
+    value: ""
+    
+  - name: TELEGRAM_BOT_TOKEN
+    value: ""
+  - name: TELEGRAM_CHAT_ID
+    value: ""
+
+command:
+  enabled: true
+  cmd: ["go-alert"]
+
+#   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   # 
+
+replicaCount: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+resources:
+  requests:
+    memory: ""
+    cpu: ""
+  limits:
+    memory: "1Gi"
+    cpu: "0.1"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelectorEnabled: false
+nodeSelector:
+  preemptible: "false"
+
+tolerations: []
+
+affinity: {}
+
+probesEnabled: false
+livenessProbe:
+  exec:
+    command: {}
+  initialDelaySeconds: 600
+  periodSeconds: 60
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
+
+readinessProbe:
+  exec:
+    command: {}
+  initialDelaySeconds: 600
+  periodSeconds: 60
+  timeoutSeconds: 5
+  failureThreshold: 5
+  successThreshold: 1
