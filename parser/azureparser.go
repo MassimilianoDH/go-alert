@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"go-alert/bot"
+	"go-alert/config"
 	"go-alert/models"
 	"html/template"
 	"log"
@@ -24,7 +25,7 @@ func AzureParseAndSend(c *gin.Context) {
 		log.Println(err)
 	}
 
-	log.Println("Server: Incoming Alert from: ", azureAlert.SchemaID)
+	log.Println("Server: Incoming Alert from: ", azureAlert.Data.Essentials.AlertID)
 
 	data := models.AzureMessage{
 		AlertID:     azureAlert.Data.Essentials.AlertID,
@@ -33,7 +34,7 @@ func AzureParseAndSend(c *gin.Context) {
 		ThreatLevel: azureAlert.Data.AlertContext.Properties.Name1,
 	}
 
-	t, err := template.ParseFiles("templates/azuretemplate.txt")
+	t, err := template.ParseFiles(config.AZRTemplate)
 	if err != nil {
 		log.Println(err)
 	}

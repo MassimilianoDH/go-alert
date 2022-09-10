@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"go-alert/bot"
+	"go-alert/config"
 	"go-alert/models"
 	"html/template"
 	"log"
@@ -37,7 +38,7 @@ func AmazonParseAndSend(c *gin.Context) {
 			MessageID: amazonAlert.MessageID,
 		}
 
-		t, err := template.ParseFiles("templates/amazontemplate.txt")
+		t, err := template.ParseFiles(config.AWSTemplate)
 		if err != nil {
 			log.Println(err)
 		}
@@ -64,7 +65,7 @@ func AmazonParseAndSend(c *gin.Context) {
 			log.Println(err)
 		}
 
-		log.Println("Server: Incoming Subscription Request from: ", amazonSub.TopicArn)
+		log.Println("Server: Incoming (Un)Subscription Request from: ", amazonSub.TopicArn)
 		log.Println("SubscribeURL: ", amazonSub.SubscribeURL)
 	}
 

@@ -28,8 +28,6 @@ func StartBot() {
 		discordService.AuthenticateWithBotToken(config.DiscordBotToken)
 		discordService.AddReceivers(config.DiscordChatID)
 		notify.UseServices(discordService)
-	} else {
-		log.Println("Both Bot Token AND Chat ID are needed")
 	}
 
 	// Create a Microsoft Teams service
@@ -37,8 +35,6 @@ func StartBot() {
 		msTeamsService := msteams.New()
 		msTeamsService.AddReceivers(config.TeamsWebhook)
 		notify.UseServices(msTeamsService)
-	} else {
-		log.Println("Both Bot Token AND Chat ID are needed")
 	}
 
 	// Create a Slack service
@@ -46,21 +42,17 @@ func StartBot() {
 		slackService := slack.New(config.SlackBotToken)
 		slackService.AddReceivers(config.SlackChatID)
 		notify.UseServices(slackService)
-	} else {
-		log.Println("Both Bot Token AND Chat ID are needed")
 	}
 
 	// Create a Telegram service
 	if config.TelegramBotToken != "" && config.TelegramChatID != 0 {
 		telegramService, err := telegram.New(config.TelegramBotToken)
-		telegramService.SetParseMode(telegram.ModeMarkdown)
-		telegramService.AddReceivers(config.TelegramChatID)
 		if err != nil {
 			log.Fatal(err)
 		}
+		telegramService.SetParseMode(telegram.ModeMarkdown)
+		telegramService.AddReceivers(config.TelegramChatID)
 		notify.UseServices(telegramService)
-	} else {
-		log.Println("Both Bot Token AND Chat ID are needed")
 	}
 
 	// ExpBot will expose bot to server.go

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"go-alert/bot"
+	"go-alert/config"
 	"go-alert/models"
 	"html/template"
 	"log"
@@ -33,7 +34,7 @@ func GoogleParseAndSend(c *gin.Context) {
 		ThreatLevel:  googleAlert.Incident.PolicyUserLabels.UserLabel1,
 	}
 
-	t, err := template.ParseFiles("templates/googletemplate.txt")
+	t, err := template.ParseFiles(config.GCPTemplate)
 	if err != nil {
 		log.Println(err)
 	}

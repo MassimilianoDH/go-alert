@@ -21,15 +21,15 @@ func StartServer() {
 	}))
 
 	// Set handles
-	if config.GCPEnabled {
+	if config.GCPTemplate != "" {
 		authorized.POST("/gcp", parser.GoogleParseAndSend)
 	}
 
-	if config.AZREnabled {
+	if config.AZRTemplate != "" {
 		authorized.POST("/azr", parser.AzureParseAndSend)
 	}
 
-	if config.AWSEnabled {
+	if config.AWSTemplate != "" {
 		authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
 	}
 
