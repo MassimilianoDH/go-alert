@@ -1,7 +1,0 @@
-Google Cloud
-Project ID: '{{.ProjectID}}'
-Resource Type: '{{.ResourceType}}'
-Resource Name: '{{.ResourceName}}'
-Policy Name: '{{.PolicyName}}'
-Threat Level: '{{.ThreatLevel}}'
-Summary: '{{.Summary}}'

@@ -31,19 +31,12 @@ func AmazonParseAndSend(c *gin.Context) {
 
 		log.Println("Server: Incoming Alert from: ", amazonAlert.TopicArn)
 
-		data := models.AmazonMessage{
-			Topic:     amazonAlert.TopicArn,
-			Subject:   amazonAlert.Subject,
-			Message:   amazonAlert.Message,
-			MessageID: amazonAlert.MessageID,
-		}
-
 		t, err := template.ParseFiles(config.AWSTemplate)
 		if err != nil {
 			log.Println(err)
 		}
 
-		err = t.Execute(&b, &data)
+		err = t.Execute(&b, &amazonAlert)
 		if err != nil {
 			log.Println(err)
 		}

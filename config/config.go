@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// SERVER
+//  SERVER
 
 // Server Port
 var Port string = ":" + os.Getenv("SERVER_PORT")
@@ -19,7 +19,7 @@ var GCPTemplate string = os.Getenv("GCP_TEMPLATE")
 var AZRTemplate string = os.Getenv("AZR_TEMPLATE")
 var AWSTemplate string = os.Getenv("AWS_TEMPLATE")
 
-// CHATS
+//  CHATS
 
 // Discord
 var DiscordBotToken string = os.Getenv("DISCORD_BOT_TOKEN")

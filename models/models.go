@@ -71,23 +71,6 @@ type GoogleAlert struct {
 	Version string `json:"version"`
 }
 
-type GoogleMessageLong struct {
-	ProjectID    string
-	ResourceType string
-	ResourceName string
-	PolicyName   string
-	ThreatLevel  string
-	Summary      string
-	URL          string
-}
-
-type GoogleMessage struct {
-	ProjectID    string
-	ResourceType string
-	PolicyName   string
-	ThreatLevel  string
-}
-
 // Azure Cloud Monitoring Alert
 // https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-log-webhook
 
@@ -144,13 +127,6 @@ type AzureAlert struct {
 	} `json:"data"`
 }
 
-type AzureMessage struct {
-	AlertID     string
-	SignalType  string
-	AlertRule   string
-	ThreatLevel string
-}
-
 // Amazon Web Services SNS Alert
 // https://docs.aws.amazon.com/sns/latest/dg/sns-message-and-json-formats.html
 
@@ -191,11 +167,4 @@ type AmazonUnsubscribeConfirmation struct {
 	SignatureVersion string    `json:"SignatureVersion"`
 	Signature        string    `json:"Signature"`
 	SigningCertURL   string    `json:"SigningCertURL"`
-}
-
-type AmazonMessage struct {
-	Topic     string
-	Subject   string
-	Message   string
-	MessageID string
 }

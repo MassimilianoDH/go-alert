@@ -27,19 +27,12 @@ func GoogleParseAndSend(c *gin.Context) {
 
 	log.Println("Server: Incoming Alert from: ", googleAlert.Incident.ScopingProjectID)
 
-	data := models.GoogleMessage{
-		ProjectID:    googleAlert.Incident.ScopingProjectID,
-		ResourceType: googleAlert.Incident.ResourceTypeDisplayName,
-		PolicyName:   googleAlert.Incident.PolicyName,
-		ThreatLevel:  googleAlert.Incident.PolicyUserLabels.UserLabel1,
-	}
-
 	t, err := template.ParseFiles(config.GCPTemplate)
 	if err != nil {
 		log.Println(err)
 	}
 
-	err = t.Execute(&b, &data)
+	err = t.Execute(&b, &googleAlert)
 	if err != nil {
 		log.Println(err)
 	}

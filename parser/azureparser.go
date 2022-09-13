@@ -27,19 +27,12 @@ func AzureParseAndSend(c *gin.Context) {
 
 	log.Println("Server: Incoming Alert from: ", azureAlert.Data.Essentials.AlertID)
 
-	data := models.AzureMessage{
-		AlertID:     azureAlert.Data.Essentials.AlertID,
-		SignalType:  azureAlert.Data.Essentials.SignalType,
-		AlertRule:   azureAlert.Data.Essentials.AlertRule,
-		ThreatLevel: azureAlert.Data.AlertContext.Properties.Name1,
-	}
-
 	t, err := template.ParseFiles(config.AZRTemplate)
 	if err != nil {
 		log.Println(err)
 	}
 
-	err = t.Execute(&b, &data)
+	err = t.Execute(&b, &azureAlert)
 	if err != nil {
 		log.Println(err)
 	}

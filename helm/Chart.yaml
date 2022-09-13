@@ -1,6 +1,6 @@
 apiVersion: v2
 name: goalert
-description: A Helm chart for Go Alert
+description: A Helm chart for GO Alert
 type: application
 version: 0.1.0
 appVersion: "0.1.0"

@@ -55,7 +55,7 @@ func StartBot() {
 		notify.UseServices(telegramService)
 	}
 
-	// ExpBot will expose bot to server.go
+	// ExpBot will expose bot
 	ExpBot = notify
 
 	// Send message to confirm bot start

@@ -1,5 +1,5 @@
 ☁️*Cloud Provider:* Amazon Cloud
-📃*Topic:* '{{.Topic}}'
+📃*Topic:* '{{.TopicArn}}'
 🗂️*Subject:* '{{.Subject}}'
 💌*Message:* '{{.Message}}'
 🪪*MessageID:* '{{.MessageID}}'

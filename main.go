@@ -6,6 +6,7 @@ import (
 	"sync"
 )
 
+// main func
 func main() {
 	wg := new(sync.WaitGroup)
 

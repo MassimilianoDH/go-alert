@@ -1,5 +1,5 @@
 ☁️*Cloud Provider:* Google Cloud
-🪪*Project ID:* '{{.ProjectID}}'
-🖥️*Resource Type:* '{{.ResourceType}}'
-📃*Policy Name:* '{{.PolicyName}}'
-📈*Threat Level:* '{{.ThreatLevel}}'
+🪪*Project ID:* '{{.Incident.ScopingProjectID}}'
+🖥️*Resource Type:* '{{.Incident.ResourceTypeDisplayName}}'
+📃*Policy Name:* '{{.Incident.PolicyName}}'
+📈*Threat Level:* '{{.Incident.PolicyUserLabels.UserLabel1}}'

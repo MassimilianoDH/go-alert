@@ -33,7 +33,7 @@ func StartServer() {
 		authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
 	}
 
-	// listen and serve on 0.0.0.0:config.Port
+	// listen and serve on config.Port
 	err = r.Run(config.Port)
 	if err != nil {
 		log.Fatal(err)
