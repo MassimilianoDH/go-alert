@@ -116,9 +116,11 @@ export TELEGRAM_CHAT_ID=-123456789
 
 After setting up your environment variables GO-Alert should be good to GO. Run the binary and you will receive a message confirming that your bot is working. With the bot running now you will be able to add the public endpoint URL to your preferred Cloud Provider.
 
-- [Google Cloud | Manage notification channels ](https://cloud.google.com/monitoring/support/notification-options#webhooks)
-- [Microsoft Azure | ]()
+- [Google Cloud | Manage notification channels](https://cloud.google.com/monitoring/support/notification-options#webhooks)
+- [Microsoft Azure | Create and manage action groups in the Azure portal](https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups#secure-webhook)
 - [Amazon Web Services | Fanout to HTTP/S endpoints](https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html)
+
+You may also use the provided `Helm Chart` to run this bot.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [GO](https://GO.dev/) - Base
