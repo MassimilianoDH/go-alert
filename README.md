@@ -55,9 +55,10 @@ A simple yet scalable GO bot to broadcast monitoring alerts from various Cloud P
 ### Build (required) <a name = "build"></a>
  
 ```
-git clone github.com/MassimilianoDH/go-alert
+git clone https://github.com/MassimilianoDH/go-alert
 cd go-alert
-go build main.go
+go build
+chmod +x go-alert
 ```
 
 You may also use the provided `Dockerfile` to create a Docker Image.
