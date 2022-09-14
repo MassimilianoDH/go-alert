@@ -59,6 +59,7 @@ git clone https://github.com/MassimilianoDH/go-alert
 cd go-alert
 go build
 chmod +x go-alert
+./go-alert (won't work until your env vars are set)
 ```
 
 You may also use the provided `Dockerfile` to create a Docker Image.
