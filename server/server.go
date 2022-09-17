@@ -30,7 +30,7 @@ func StartServer() {
 	}
 
 	if config.AWSTemplate != "" {
-		authorized.POST("/amazonwebservices", parser.AmazonParseAndSend)
+		authorized.POST("/aws", parser.AmazonParseAndSend)
 	}
 
 	// listen and serve on config.Port
