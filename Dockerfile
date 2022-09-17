@@ -27,5 +27,6 @@ RUN apk --no-cache add \
 
 # Copy the binaries from the builder image.
 COPY --from=builder builder/go-alert/go-alert /bin/
+COPY --from=builder builder/go-alert/templates /bin/templates/
 
 CMD [ "go-alert" ]
